@@ -9,11 +9,15 @@ HunterGate(
     SHA1 "c712822281d4f9f76ea6a9c982b776578707d9d0"
 )
 
-project(pack)
-hunter_add_package(nlohmann_json)
-find_package(nlohmann_json CONFIG REQUIRED)
+project(pugixml)
+hunter_add_package(pugixml)
+find_package(pugixml CONFIG REQUIRED)
 
-add_executable(pack ${CMAKE_CURRENT_SOURCE_DIR}/sources/pack.cpp)
-target_link_libraries(pack nlohmann_json)
-add_executable(unpack ${CMAKE_CURRENT_SOURCE_DIR}/sources/unpack.cpp)
-target_link_libraries(unpack nlohmann_json)
+set(PACK_SOURCE_FILES sources/pack.cpp)
+set(UNPACK_SOURCE_FILES sources/unpack.cpp)
+
+
+add_executable(pack ${PACK_SOURCE_FILES})
+target_link_libraries(pack pugixml)
+add_executable(unpack ${UNPACK_SOURCE_FILES})
+target_link_libraries(unpack pugixml)
